@@ -8,9 +8,30 @@
     </head>
     <body>
         <div class="container">
-            <h1>Template Classe 89</h1>
-            <img src="{{ Vite::asset('resources/img/pluto.webp') }}" alt="" srcset="">
+            <h1 class="text-center p-3">Treni</h1>
+            <div class="row gap-2">
+                @foreach ($trains as $train)
+                <ul class="list-group col">
+                    <li class="list-group-item">Treno numero: {{$train->train_code}}</li>
+                    <li class="list-group-item">In partenza da: {{$train->departure_station}} alle ore: {{$train->departure_time}}</li>
+                    <li class="list-group-item">In arrivo a: {{$train->arrival_station}} alle ore: {{$train->arrival_time}} </li>
+                    <li class="list-group-item">{{$train->on_time == 0 ? 'In ritardo' : 'In orario' }}</li>
+                    <li class="list-group-item">{{$train->cancelled == 0 ? '-' : 'Cancellato' }}</li>
+                </ul>
+                @endforeach
+            </div>
+            <h1 class="text-center p-3">Treni in arrivo oggi</h1>
+            <div class="row gap-2">
+                @foreach ($todayTrains as $train)
+                <ul class="list-group col">
+                    <li class="list-group-item">Treno numero: {{$train->train_code}}</li>
+                    <li class="list-group-item">In partenza da: {{$train->departure_station}} alle ore: {{$train->departure_time}}</li>
+                    <li class="list-group-item">In arrivo a: {{$train->arrival_station}} alle ore: {{$train->arrival_time}} </li>
+                    <li class="list-group-item">{{$train->on_time == 0 ? 'In ritardo' : 'In orario' }}</li>
+                    <li class="list-group-item">{{$train->cancelled == 0 ? '-' : 'Cancellato' }}</li>
+                </ul>
+                @endforeach
+            </div>
         </div>
-
     </body>
 </html>
